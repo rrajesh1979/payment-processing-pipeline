@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+option java_package = "payment.model";
+
+import "google/protobuf/timestamp.proto";
+
+message Payment {
+  required string paymentID = 1;
+  required string tenantID = 2;
+  required google.protobuf.Timestamp txnDate = 3;
+  required string currentStage = 4;
+
+  message PipelineStage {
+    required string stage = 1;
+    required bool status = 2;
+  }
+
+  repeated PipelineStage processingPipeline = 5;
+}
