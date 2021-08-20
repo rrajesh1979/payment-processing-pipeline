@@ -10,10 +10,14 @@ message Payment {
   required google.protobuf.Timestamp txnDate = 3;
   required string currentStage = 4;
 
-  message PipelineStage {
-    required string stage = 1;
-    required bool status = 2;
-  }
-
-  repeated PipelineStage processingPipeline = 5;
+//  message Stage {
+//    required string stage = 1;
+//    required bool status = 2;
+//  }
+//
+//  message PipelineStages {
+//    repeated Stage processingPipeline = 1;
+//  }
+//
+//  required PipelineStages processingPipeline = 5;
 }

@@ -83,30 +83,6 @@ public final class PaymentOuterClass {
      */
     com.google.protobuf.ByteString
         getCurrentStageBytes();
-
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    java.util.List<payment.model.PaymentOuterClass.Payment.PipelineStage> 
-        getProcessingPipelineList();
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    payment.model.PaymentOuterClass.Payment.PipelineStage getProcessingPipeline(int index);
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    int getProcessingPipelineCount();
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    java.util.List<? extends payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder> 
-        getProcessingPipelineOrBuilderList();
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder getProcessingPipelineOrBuilder(
-        int index);
   }
   /**
    * Protobuf type {@code Payment}
@@ -124,7 +100,6 @@ public final class PaymentOuterClass {
       paymentID_ = "";
       tenantID_ = "";
       currentStage_ = "";
-      processingPipeline_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -189,15 +164,6 @@ public final class PaymentOuterClass {
               currentStage_ = bs;
               break;
             }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000010) != 0)) {
-                processingPipeline_ = new java.util.ArrayList<payment.model.PaymentOuterClass.Payment.PipelineStage>();
-                mutable_bitField0_ |= 0x00000010;
-              }
-              processingPipeline_.add(
-                  input.readMessage(payment.model.PaymentOuterClass.Payment.PipelineStage.PARSER, extensionRegistry));
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -213,9 +179,6 @@ public final class PaymentOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000010) != 0)) {
-          processingPipeline_ = java.util.Collections.unmodifiableList(processingPipeline_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -231,726 +194,6 @@ public final class PaymentOuterClass {
       return payment.model.PaymentOuterClass.internal_static_Payment_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               payment.model.PaymentOuterClass.Payment.class, payment.model.PaymentOuterClass.Payment.Builder.class);
-    }
-
-    public interface PipelineStageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:Payment.PipelineStage)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>required string stage = 1;</code>
-       * @return Whether the stage field is set.
-       */
-      boolean hasStage();
-      /**
-       * <code>required string stage = 1;</code>
-       * @return The stage.
-       */
-      java.lang.String getStage();
-      /**
-       * <code>required string stage = 1;</code>
-       * @return The bytes for stage.
-       */
-      com.google.protobuf.ByteString
-          getStageBytes();
-
-      /**
-       * <code>required bool status = 2;</code>
-       * @return Whether the status field is set.
-       */
-      boolean hasStatus();
-      /**
-       * <code>required bool status = 2;</code>
-       * @return The status.
-       */
-      boolean getStatus();
-    }
-    /**
-     * Protobuf type {@code Payment.PipelineStage}
-     */
-    public static final class PipelineStage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:Payment.PipelineStage)
-        PipelineStageOrBuilder {
-    private static final long serialVersionUID = 0L;
-      // Use PipelineStage.newBuilder() to construct.
-      private PipelineStage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-      private PipelineStage() {
-        stage_ = "";
-      }
-
-      @java.lang.Override
-      @SuppressWarnings({"unused"})
-      protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-        return new PipelineStage();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-      private PipelineStage(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        int mutable_bitField0_ = 0;
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                com.google.protobuf.ByteString bs = input.readBytes();
-                bitField0_ |= 0x00000001;
-                stage_ = bs;
-                break;
-              }
-              case 16: {
-                bitField0_ |= 0x00000002;
-                status_ = input.readBool();
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return payment.model.PaymentOuterClass.internal_static_Payment_PipelineStage_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return payment.model.PaymentOuterClass.internal_static_Payment_PipelineStage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                payment.model.PaymentOuterClass.Payment.PipelineStage.class, payment.model.PaymentOuterClass.Payment.PipelineStage.Builder.class);
-      }
-
-      private int bitField0_;
-      public static final int STAGE_FIELD_NUMBER = 1;
-      private volatile java.lang.Object stage_;
-      /**
-       * <code>required string stage = 1;</code>
-       * @return Whether the stage field is set.
-       */
-      @java.lang.Override
-      public boolean hasStage() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <code>required string stage = 1;</code>
-       * @return The stage.
-       */
-      @java.lang.Override
-      public java.lang.String getStage() {
-        java.lang.Object ref = stage_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            stage_ = s;
-          }
-          return s;
-        }
-      }
-      /**
-       * <code>required string stage = 1;</code>
-       * @return The bytes for stage.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString
-          getStageBytes() {
-        java.lang.Object ref = stage_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          stage_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      public static final int STATUS_FIELD_NUMBER = 2;
-      private boolean status_;
-      /**
-       * <code>required bool status = 2;</code>
-       * @return Whether the status field is set.
-       */
-      @java.lang.Override
-      public boolean hasStatus() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <code>required bool status = 2;</code>
-       * @return The status.
-       */
-      @java.lang.Override
-      public boolean getStatus() {
-        return status_;
-      }
-
-      private byte memoizedIsInitialized = -1;
-      @java.lang.Override
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        if (!hasStage()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-        if (!hasStatus()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      @java.lang.Override
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, stage_);
-        }
-        if (((bitField0_ & 0x00000002) != 0)) {
-          output.writeBool(2, status_);
-        }
-        unknownFields.writeTo(output);
-      }
-
-      @java.lang.Override
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, stage_);
-        }
-        if (((bitField0_ & 0x00000002) != 0)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeBoolSize(2, status_);
-        }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-      }
-
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof payment.model.PaymentOuterClass.Payment.PipelineStage)) {
-          return super.equals(obj);
-        }
-        payment.model.PaymentOuterClass.Payment.PipelineStage other = (payment.model.PaymentOuterClass.Payment.PipelineStage) obj;
-
-        if (hasStage() != other.hasStage()) return false;
-        if (hasStage()) {
-          if (!getStage()
-              .equals(other.getStage())) return false;
-        }
-        if (hasStatus() != other.hasStatus()) return false;
-        if (hasStatus()) {
-          if (getStatus()
-              != other.getStatus()) return false;
-        }
-        if (!unknownFields.equals(other.unknownFields)) return false;
-        return true;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        if (hasStage()) {
-          hash = (37 * hash) + STAGE_FIELD_NUMBER;
-          hash = (53 * hash) + getStage().hashCode();
-        }
-        if (hasStatus()) {
-          hash = (37 * hash) + STATUS_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-              getStatus());
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      @java.lang.Override
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(payment.model.PaymentOuterClass.Payment.PipelineStage prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      @java.lang.Override
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code Payment.PipelineStage}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:Payment.PipelineStage)
-          payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return payment.model.PaymentOuterClass.internal_static_Payment_PipelineStage_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return payment.model.PaymentOuterClass.internal_static_Payment_PipelineStage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  payment.model.PaymentOuterClass.Payment.PipelineStage.class, payment.model.PaymentOuterClass.Payment.PipelineStage.Builder.class);
-        }
-
-        // Construct using payment.model.PaymentOuterClass.Payment.PipelineStage.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        @java.lang.Override
-        public Builder clear() {
-          super.clear();
-          stage_ = "";
-          bitField0_ = (bitField0_ & ~0x00000001);
-          status_ = false;
-          bitField0_ = (bitField0_ & ~0x00000002);
-          return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return payment.model.PaymentOuterClass.internal_static_Payment_PipelineStage_descriptor;
-        }
-
-        @java.lang.Override
-        public payment.model.PaymentOuterClass.Payment.PipelineStage getDefaultInstanceForType() {
-          return payment.model.PaymentOuterClass.Payment.PipelineStage.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public payment.model.PaymentOuterClass.Payment.PipelineStage build() {
-          payment.model.PaymentOuterClass.Payment.PipelineStage result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        @java.lang.Override
-        public payment.model.PaymentOuterClass.Payment.PipelineStage buildPartial() {
-          payment.model.PaymentOuterClass.Payment.PipelineStage result = new payment.model.PaymentOuterClass.Payment.PipelineStage(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (((from_bitField0_ & 0x00000001) != 0)) {
-            to_bitField0_ |= 0x00000001;
-          }
-          result.stage_ = stage_;
-          if (((from_bitField0_ & 0x00000002) != 0)) {
-            result.status_ = status_;
-            to_bitField0_ |= 0x00000002;
-          }
-          result.bitField0_ = to_bitField0_;
-          onBuilt();
-          return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
-        }
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof payment.model.PaymentOuterClass.Payment.PipelineStage) {
-            return mergeFrom((payment.model.PaymentOuterClass.Payment.PipelineStage)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(payment.model.PaymentOuterClass.Payment.PipelineStage other) {
-          if (other == payment.model.PaymentOuterClass.Payment.PipelineStage.getDefaultInstance()) return this;
-          if (other.hasStage()) {
-            bitField0_ |= 0x00000001;
-            stage_ = other.stage_;
-            onChanged();
-          }
-          if (other.hasStatus()) {
-            setStatus(other.getStatus());
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final boolean isInitialized() {
-          if (!hasStage()) {
-            return false;
-          }
-          if (!hasStatus()) {
-            return false;
-          }
-          return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          payment.model.PaymentOuterClass.Payment.PipelineStage parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (payment.model.PaymentOuterClass.Payment.PipelineStage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-        private int bitField0_;
-
-        private java.lang.Object stage_ = "";
-        /**
-         * <code>required string stage = 1;</code>
-         * @return Whether the stage field is set.
-         */
-        public boolean hasStage() {
-          return ((bitField0_ & 0x00000001) != 0);
-        }
-        /**
-         * <code>required string stage = 1;</code>
-         * @return The stage.
-         */
-        public java.lang.String getStage() {
-          java.lang.Object ref = stage_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-              stage_ = s;
-            }
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-        /**
-         * <code>required string stage = 1;</code>
-         * @return The bytes for stage.
-         */
-        public com.google.protobuf.ByteString
-            getStageBytes() {
-          java.lang.Object ref = stage_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b = 
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            stage_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-        /**
-         * <code>required string stage = 1;</code>
-         * @param value The stage to set.
-         * @return This builder for chaining.
-         */
-        public Builder setStage(
-            java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-          stage_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>required string stage = 1;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearStage() {
-          bitField0_ = (bitField0_ & ~0x00000001);
-          stage_ = getDefaultInstance().getStage();
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>required string stage = 1;</code>
-         * @param value The bytes for stage to set.
-         * @return This builder for chaining.
-         */
-        public Builder setStageBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-          stage_ = value;
-          onChanged();
-          return this;
-        }
-
-        private boolean status_ ;
-        /**
-         * <code>required bool status = 2;</code>
-         * @return Whether the status field is set.
-         */
-        @java.lang.Override
-        public boolean hasStatus() {
-          return ((bitField0_ & 0x00000002) != 0);
-        }
-        /**
-         * <code>required bool status = 2;</code>
-         * @return The status.
-         */
-        @java.lang.Override
-        public boolean getStatus() {
-          return status_;
-        }
-        /**
-         * <code>required bool status = 2;</code>
-         * @param value The status to set.
-         * @return This builder for chaining.
-         */
-        public Builder setStatus(boolean value) {
-          bitField0_ |= 0x00000002;
-          status_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>required bool status = 2;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearStatus() {
-          bitField0_ = (bitField0_ & ~0x00000002);
-          status_ = false;
-          onChanged();
-          return this;
-        }
-        @java.lang.Override
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:Payment.PipelineStage)
-      }
-
-      // @@protoc_insertion_point(class_scope:Payment.PipelineStage)
-      private static final payment.model.PaymentOuterClass.Payment.PipelineStage DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new payment.model.PaymentOuterClass.Payment.PipelineStage();
-      }
-
-      public static payment.model.PaymentOuterClass.Payment.PipelineStage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<PipelineStage>
-          PARSER = new com.google.protobuf.AbstractParser<PipelineStage>() {
-        @java.lang.Override
-        public PipelineStage parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return new PipelineStage(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<PipelineStage> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<PipelineStage> getParserForType() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public payment.model.PaymentOuterClass.Payment.PipelineStage getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
     }
 
     private int bitField0_;
@@ -1124,46 +367,6 @@ public final class PaymentOuterClass {
       }
     }
 
-    public static final int PROCESSINGPIPELINE_FIELD_NUMBER = 5;
-    private java.util.List<payment.model.PaymentOuterClass.Payment.PipelineStage> processingPipeline_;
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    @java.lang.Override
-    public java.util.List<payment.model.PaymentOuterClass.Payment.PipelineStage> getProcessingPipelineList() {
-      return processingPipeline_;
-    }
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder> 
-        getProcessingPipelineOrBuilderList() {
-      return processingPipeline_;
-    }
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    @java.lang.Override
-    public int getProcessingPipelineCount() {
-      return processingPipeline_.size();
-    }
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    @java.lang.Override
-    public payment.model.PaymentOuterClass.Payment.PipelineStage getProcessingPipeline(int index) {
-      return processingPipeline_.get(index);
-    }
-    /**
-     * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-     */
-    @java.lang.Override
-    public payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder getProcessingPipelineOrBuilder(
-        int index) {
-      return processingPipeline_.get(index);
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1187,12 +390,6 @@ public final class PaymentOuterClass {
         memoizedIsInitialized = 0;
         return false;
       }
-      for (int i = 0; i < getProcessingPipelineCount(); i++) {
-        if (!getProcessingPipeline(i).isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1211,9 +408,6 @@ public final class PaymentOuterClass {
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, currentStage_);
-      }
-      for (int i = 0; i < processingPipeline_.size(); i++) {
-        output.writeMessage(5, processingPipeline_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1236,10 +430,6 @@ public final class PaymentOuterClass {
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, currentStage_);
-      }
-      for (int i = 0; i < processingPipeline_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, processingPipeline_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1276,8 +466,6 @@ public final class PaymentOuterClass {
         if (!getCurrentStage()
             .equals(other.getCurrentStage())) return false;
       }
-      if (!getProcessingPipelineList()
-          .equals(other.getProcessingPipelineList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1304,10 +492,6 @@ public final class PaymentOuterClass {
       if (hasCurrentStage()) {
         hash = (37 * hash) + CURRENTSTAGE_FIELD_NUMBER;
         hash = (53 * hash) + getCurrentStage().hashCode();
-      }
-      if (getProcessingPipelineCount() > 0) {
-        hash = (37 * hash) + PROCESSINGPIPELINE_FIELD_NUMBER;
-        hash = (53 * hash) + getProcessingPipelineList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1438,7 +622,6 @@ public final class PaymentOuterClass {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
           getTxnDateFieldBuilder();
-          getProcessingPipelineFieldBuilder();
         }
       }
       @java.lang.Override
@@ -1456,12 +639,6 @@ public final class PaymentOuterClass {
         bitField0_ = (bitField0_ & ~0x00000004);
         currentStage_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        if (processingPipelineBuilder_ == null) {
-          processingPipeline_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
-        } else {
-          processingPipelineBuilder_.clear();
-        }
         return this;
       }
 
@@ -1510,15 +687,6 @@ public final class PaymentOuterClass {
           to_bitField0_ |= 0x00000008;
         }
         result.currentStage_ = currentStage_;
-        if (processingPipelineBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) != 0)) {
-            processingPipeline_ = java.util.Collections.unmodifiableList(processingPipeline_);
-            bitField0_ = (bitField0_ & ~0x00000010);
-          }
-          result.processingPipeline_ = processingPipeline_;
-        } else {
-          result.processingPipeline_ = processingPipelineBuilder_.build();
-        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1586,32 +754,6 @@ public final class PaymentOuterClass {
           currentStage_ = other.currentStage_;
           onChanged();
         }
-        if (processingPipelineBuilder_ == null) {
-          if (!other.processingPipeline_.isEmpty()) {
-            if (processingPipeline_.isEmpty()) {
-              processingPipeline_ = other.processingPipeline_;
-              bitField0_ = (bitField0_ & ~0x00000010);
-            } else {
-              ensureProcessingPipelineIsMutable();
-              processingPipeline_.addAll(other.processingPipeline_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.processingPipeline_.isEmpty()) {
-            if (processingPipelineBuilder_.isEmpty()) {
-              processingPipelineBuilder_.dispose();
-              processingPipelineBuilder_ = null;
-              processingPipeline_ = other.processingPipeline_;
-              bitField0_ = (bitField0_ & ~0x00000010);
-              processingPipelineBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getProcessingPipelineFieldBuilder() : null;
-            } else {
-              processingPipelineBuilder_.addAllMessages(other.processingPipeline_);
-            }
-          }
-        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -1630,11 +772,6 @@ public final class PaymentOuterClass {
         }
         if (!hasCurrentStage()) {
           return false;
-        }
-        for (int i = 0; i < getProcessingPipelineCount(); i++) {
-          if (!getProcessingPipeline(i).isInitialized()) {
-            return false;
-          }
         }
         return true;
       }
@@ -2030,246 +1167,6 @@ public final class PaymentOuterClass {
         onChanged();
         return this;
       }
-
-      private java.util.List<payment.model.PaymentOuterClass.Payment.PipelineStage> processingPipeline_ =
-        java.util.Collections.emptyList();
-      private void ensureProcessingPipelineIsMutable() {
-        if (!((bitField0_ & 0x00000010) != 0)) {
-          processingPipeline_ = new java.util.ArrayList<payment.model.PaymentOuterClass.Payment.PipelineStage>(processingPipeline_);
-          bitField0_ |= 0x00000010;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          payment.model.PaymentOuterClass.Payment.PipelineStage, payment.model.PaymentOuterClass.Payment.PipelineStage.Builder, payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder> processingPipelineBuilder_;
-
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public java.util.List<payment.model.PaymentOuterClass.Payment.PipelineStage> getProcessingPipelineList() {
-        if (processingPipelineBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(processingPipeline_);
-        } else {
-          return processingPipelineBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public int getProcessingPipelineCount() {
-        if (processingPipelineBuilder_ == null) {
-          return processingPipeline_.size();
-        } else {
-          return processingPipelineBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public payment.model.PaymentOuterClass.Payment.PipelineStage getProcessingPipeline(int index) {
-        if (processingPipelineBuilder_ == null) {
-          return processingPipeline_.get(index);
-        } else {
-          return processingPipelineBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder setProcessingPipeline(
-          int index, payment.model.PaymentOuterClass.Payment.PipelineStage value) {
-        if (processingPipelineBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureProcessingPipelineIsMutable();
-          processingPipeline_.set(index, value);
-          onChanged();
-        } else {
-          processingPipelineBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder setProcessingPipeline(
-          int index, payment.model.PaymentOuterClass.Payment.PipelineStage.Builder builderForValue) {
-        if (processingPipelineBuilder_ == null) {
-          ensureProcessingPipelineIsMutable();
-          processingPipeline_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          processingPipelineBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder addProcessingPipeline(payment.model.PaymentOuterClass.Payment.PipelineStage value) {
-        if (processingPipelineBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureProcessingPipelineIsMutable();
-          processingPipeline_.add(value);
-          onChanged();
-        } else {
-          processingPipelineBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder addProcessingPipeline(
-          int index, payment.model.PaymentOuterClass.Payment.PipelineStage value) {
-        if (processingPipelineBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureProcessingPipelineIsMutable();
-          processingPipeline_.add(index, value);
-          onChanged();
-        } else {
-          processingPipelineBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder addProcessingPipeline(
-          payment.model.PaymentOuterClass.Payment.PipelineStage.Builder builderForValue) {
-        if (processingPipelineBuilder_ == null) {
-          ensureProcessingPipelineIsMutable();
-          processingPipeline_.add(builderForValue.build());
-          onChanged();
-        } else {
-          processingPipelineBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder addProcessingPipeline(
-          int index, payment.model.PaymentOuterClass.Payment.PipelineStage.Builder builderForValue) {
-        if (processingPipelineBuilder_ == null) {
-          ensureProcessingPipelineIsMutable();
-          processingPipeline_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          processingPipelineBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder addAllProcessingPipeline(
-          java.lang.Iterable<? extends payment.model.PaymentOuterClass.Payment.PipelineStage> values) {
-        if (processingPipelineBuilder_ == null) {
-          ensureProcessingPipelineIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, processingPipeline_);
-          onChanged();
-        } else {
-          processingPipelineBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder clearProcessingPipeline() {
-        if (processingPipelineBuilder_ == null) {
-          processingPipeline_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
-          onChanged();
-        } else {
-          processingPipelineBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public Builder removeProcessingPipeline(int index) {
-        if (processingPipelineBuilder_ == null) {
-          ensureProcessingPipelineIsMutable();
-          processingPipeline_.remove(index);
-          onChanged();
-        } else {
-          processingPipelineBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public payment.model.PaymentOuterClass.Payment.PipelineStage.Builder getProcessingPipelineBuilder(
-          int index) {
-        return getProcessingPipelineFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder getProcessingPipelineOrBuilder(
-          int index) {
-        if (processingPipelineBuilder_ == null) {
-          return processingPipeline_.get(index);  } else {
-          return processingPipelineBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public java.util.List<? extends payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder> 
-           getProcessingPipelineOrBuilderList() {
-        if (processingPipelineBuilder_ != null) {
-          return processingPipelineBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(processingPipeline_);
-        }
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public payment.model.PaymentOuterClass.Payment.PipelineStage.Builder addProcessingPipelineBuilder() {
-        return getProcessingPipelineFieldBuilder().addBuilder(
-            payment.model.PaymentOuterClass.Payment.PipelineStage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public payment.model.PaymentOuterClass.Payment.PipelineStage.Builder addProcessingPipelineBuilder(
-          int index) {
-        return getProcessingPipelineFieldBuilder().addBuilder(
-            index, payment.model.PaymentOuterClass.Payment.PipelineStage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Payment.PipelineStage processingPipeline = 5;</code>
-       */
-      public java.util.List<payment.model.PaymentOuterClass.Payment.PipelineStage.Builder> 
-           getProcessingPipelineBuilderList() {
-        return getProcessingPipelineFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          payment.model.PaymentOuterClass.Payment.PipelineStage, payment.model.PaymentOuterClass.Payment.PipelineStage.Builder, payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder> 
-          getProcessingPipelineFieldBuilder() {
-        if (processingPipelineBuilder_ == null) {
-          processingPipelineBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              payment.model.PaymentOuterClass.Payment.PipelineStage, payment.model.PaymentOuterClass.Payment.PipelineStage.Builder, payment.model.PaymentOuterClass.Payment.PipelineStageOrBuilder>(
-                  processingPipeline_,
-                  ((bitField0_ & 0x00000010) != 0),
-                  getParentForChildren(),
-                  isClean());
-          processingPipeline_ = null;
-        }
-        return processingPipelineBuilder_;
-      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2328,11 +1225,6 @@ public final class PaymentOuterClass {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Payment_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Payment_PipelineStage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Payment_PipelineStage_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2343,13 +1235,10 @@ public final class PaymentOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\030main/proto/payment.proto\032\037google/proto" +
-      "buf/timestamp.proto\"\325\001\n\007Payment\022\021\n\tpayme" +
-      "ntID\030\001 \002(\t\022\020\n\010tenantID\030\002 \002(\t\022+\n\007txnDate\030" +
-      "\003 \002(\0132\032.google.protobuf.Timestamp\022\024\n\014cur" +
-      "rentStage\030\004 \002(\t\0222\n\022processingPipeline\030\005 " +
-      "\003(\0132\026.Payment.PipelineStage\032.\n\rPipelineS" +
-      "tage\022\r\n\005stage\030\001 \002(\t\022\016\n\006status\030\002 \002(\010B\017\n\rp" +
-      "ayment.model"
+      "buf/timestamp.proto\"q\n\007Payment\022\021\n\tpaymen" +
+      "tID\030\001 \002(\t\022\020\n\010tenantID\030\002 \002(\t\022+\n\007txnDate\030\003" +
+      " \002(\0132\032.google.protobuf.Timestamp\022\024\n\014curr" +
+      "entStage\030\004 \002(\tB\017\n\rpayment.model"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2361,13 +1250,7 @@ public final class PaymentOuterClass {
     internal_static_Payment_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Payment_descriptor,
-        new java.lang.String[] { "PaymentID", "TenantID", "TxnDate", "CurrentStage", "ProcessingPipeline", });
-    internal_static_Payment_PipelineStage_descriptor =
-      internal_static_Payment_descriptor.getNestedTypes().get(0);
-    internal_static_Payment_PipelineStage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Payment_PipelineStage_descriptor,
-        new java.lang.String[] { "Stage", "Status", });
+        new java.lang.String[] { "PaymentID", "TenantID", "TxnDate", "CurrentStage", });
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 
