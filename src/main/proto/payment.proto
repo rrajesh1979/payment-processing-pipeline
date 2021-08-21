@@ -19,5 +19,5 @@ message Payment {
     repeated Stage processingPipeline = 1;
   }
 
-  required PipelineStages processingPipeline = 5;
+  optional PipelineStages processingPipeline = 5;
 }
