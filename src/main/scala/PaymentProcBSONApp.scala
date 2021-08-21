@@ -3,7 +3,7 @@ import akka.persistence.PersistentActor
 import reactivemongo.api.bson.{BSONDateTime, BSONDocument, BSONString}
 import java.util.Date
 
-object PaymentProcessingPipeline extends App {
+object PaymentProcBSONApp extends App {
 
   case class Payment( paymentID: String,  tenantID: String,  txnDate: Date,
                       currentStage: String,  processingPipeline: Map[String, Boolean]) {
