@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+option java_package = "payment.framework.serializers";
+
+message EventProto {
+  required string stage = 1;
+}

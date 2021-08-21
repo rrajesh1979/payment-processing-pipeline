@@ -3,6 +3,7 @@ package payment.framework
 import akka.actor.{ActorLogging, Props}
 import akka.persistence.{PersistentActor, RecoveryCompleted, SaveSnapshotFailure, SaveSnapshotSuccess, SnapshotOffer}
 import com.google.protobuf.Timestamp
+import payment.framework.serializers.Event.EventProto
 
 object PaymentActor {
   def props(paymentID: String,  tenantID: String,  txnDate: Timestamp,
@@ -20,18 +21,30 @@ class PaymentActor(paymentID: String, tenantID: String, txnDate: Timestamp,
   override def persistenceId: String = s"PAY-$tenantID-$paymentID"
 
   override def receiveCommand: Receive = {
-    case CmdSanctionCheck =>
-      log.info("Received command :: CmdSanctionCheck")
-      persist(STAGE_SANCTION_CHK) {
-        _ => log.info("Persisting command {}", STAGE_SANCTION_CHK)
-        payment.currentStage = STAGE_SANCTION_CHK
+    case Command(STAGE_SANCTION_CHK) =>
+      log.info("Received command :: {}", Command(STAGE_SANCTION_CHK))
+      val eventProto = EventProto.newBuilder().setStage(STAGE_SANCTION_CHK).build()
+      persist(eventProto) {
+          _ => log.info("Persisting command {}", STAGE_SANCTION_CHK)
+          payment.currentStage = STAGE_SANCTION_CHK
+          payment.processingPipeline = payment.processingPipeline + ("STAGE_SANCTION_CHK" -> true)
       }
-    case CmdAmlCheck =>
-      log.info("Received command :: CmdAmlCheck")
-      payment.currentStage = STAGE_AML_CHK
-    case CmdFraudCheck =>
-      payment.currentStage = STAGE_FRAUD_CHK
-      log.info("Received command :: CmdFraudCheck")
+    case Command(STAGE_AML_CHK) =>
+      log.info("Received command :: {}", Command(STAGE_AML_CHK))
+      val eventProto = EventProto.newBuilder().setStage(STAGE_AML_CHK).build()
+      persist(eventProto) {
+          _ => log.info("Persisting command {}", STAGE_AML_CHK)
+          payment.currentStage = STAGE_AML_CHK
+          payment.processingPipeline = payment.processingPipeline + ("STAGE_AML_CHK" -> true)
+      }
+    case Command(STAGE_FRAUD_CHK) =>
+      log.info("Received command :: {}", Command(STAGE_FRAUD_CHK))
+      val eventProto = EventProto.newBuilder().setStage(STAGE_FRAUD_CHK).build()
+      persist(eventProto) {
+          _ => log.info("Persisting command {}", STAGE_FRAUD_CHK)
+          payment.currentStage = STAGE_FRAUD_CHK
+          payment.processingPipeline = payment.processingPipeline + ("STAGE_FRAUD_CHK" -> true)
+      }
 
     case "snapshot" =>
       log.info("Saving snapshot of payment")
@@ -47,15 +60,19 @@ class PaymentActor(paymentID: String, tenantID: String, txnDate: Timestamp,
   }
 
   override def receiveRecover: Receive = {
-    case EventSanctionCheck =>
-      payment.currentStage = STAGE_SANCTION_CHK
-      log.info("Recovered event :: EventSanctionCheck")
-    case EventAmlCheck =>
-      payment.currentStage = STAGE_AML_CHK
-      log.info("Recovered event :: EventAmlCheck")
-    case EventFraudCheck =>
-      payment.currentStage = STAGE_FRAUD_CHK
-      log.info("Recovered event :: EventFraudCheck")
+    case eventProto: EventProto =>
+      log.info("Recovered event :: {}", eventProto.getStage)
+      eventProto.getStage match {
+        case STAGE_SANCTION_CHK =>
+          payment.currentStage = STAGE_SANCTION_CHK
+          payment.processingPipeline = payment.processingPipeline + ("STAGE_SANCTION_CHK" -> true)
+        case STAGE_AML_CHK =>
+          payment.currentStage = STAGE_AML_CHK
+          payment.processingPipeline = payment.processingPipeline + ("STAGE_AML_CHK" -> true)
+        case STAGE_FRAUD_CHK =>
+          payment.currentStage = STAGE_FRAUD_CHK
+          payment.processingPipeline = payment.processingPipeline + ("STAGE_FRAUD_CHK" -> true)
+      }
 
     case RecoveryCompleted =>
       log.info("Recovery completed")
@@ -70,17 +87,13 @@ class PaymentActor(paymentID: String, tenantID: String, txnDate: Timestamp,
 
 object PaymentDomainModel {
   case class Payment(var paymentID: String, var tenantID: String, var txnDate: Timestamp,
-                     var currentStage: String)
+                     var currentStage: String, var processingPipeline: Map[String, Boolean] = starterPipeline)
 
   //commands
-  case class CmdSanctionCheck()
-  case class CmdAmlCheck()
-  case class CmdFraudCheck()
+  case class Command(stage: String)
 
   //events
-  case class EventSanctionCheck()
-  case class EventAmlCheck()
-  case class EventFraudCheck()
+  case class Event(stage: String)
 
   //Payment stages
   val STAGE_NEW = "STAGE_NEW"
@@ -92,4 +105,15 @@ object PaymentDomainModel {
   val STAGE_ACCOUNT_POSTINGS_CHK = "STAGE_ACCOUNT_POSTINGS_CHK"
   val STAGE_PROCESSING_COMPLETE = "STAGE_PROCESSING_COMPLETE"
 
+  val starterPipeline = Map(
+    STAGE_NEW -> true,
+//    STAGE_SANCTION_CHK -> false,
+//    STAGE_AML_CHK -> false,
+//    STAGE_FRAUD_CHK -> false,
+//    STAGE_FUNDS_CONTROL_CHK -> false,
+//    STAGE_LIQUIDITY_CONTROL_CHK -> false,
+//    STAGE_ACCOUNT_POSTINGS_CHK -> false,
+//    STAGE_PROCESSING_COMPLETE -> false
+  )
 }
+

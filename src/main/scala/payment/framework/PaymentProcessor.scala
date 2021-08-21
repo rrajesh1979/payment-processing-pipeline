@@ -3,6 +3,7 @@ package payment.framework
 import akka.actor.ActorSystem
 import com.google.protobuf.Timestamp
 import com.typesafe.config.ConfigFactory
+import payment.framework.PaymentDomainModel._
 
 object PaymentProcessor extends App {
   val paymentActorSystem = ActorSystem("PaymentActorSystem", ConfigFactory.load().getConfig("paymentPersistence"))
@@ -13,9 +14,9 @@ object PaymentProcessor extends App {
       Timestamp.newBuilder().setSeconds(System.nanoTime()).build(),
       PaymentDomainModel.STAGE_NEW)
   )
-//  payment ! PaymentDomainModel.CmdSanctionCheck
-//  payment ! PaymentDomainModel.CmdAmlCheck
-//  payment ! PaymentDomainModel.CmdFraudCheck
+  payment ! Command(STAGE_SANCTION_CHK)
+  payment ! Command(STAGE_AML_CHK)
+  payment ! Command(STAGE_FRAUD_CHK)
 
   payment ! "print"
 

@@ -34,7 +34,8 @@ libraryDependencies ++= Seq(
 
 
 // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
-  "com.google.protobuf" % "protobuf-java" % "3.17.3"
+  "com.google.protobuf" % "protobuf-java" % "3.17.3",
 
+  "com.sksamuel.avro4s" %% "avro4s-core" % "3.0.0",
 
 )
