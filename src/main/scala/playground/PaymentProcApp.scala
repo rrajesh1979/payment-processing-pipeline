@@ -1,3 +1,5 @@
+package playground
+
 import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.PersistentActor
 import com.google.protobuf.Timestamp

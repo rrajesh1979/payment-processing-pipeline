@@ -1,4 +1,4 @@
-package payment.framework
+package playground
 
 import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.PersistentActor
@@ -33,11 +33,17 @@ object PaymentProcBSONApp extends App {
   )
 
   case class CommandSanctionCheck(payment: Payment)
+
   case class CommandAmlCheck(payment: Payment)
+
   case class CommandFraudCheck(payment: Payment)
+
   case class CommandFundsCtrlCheck(payment: Payment)
+
   case class CommandLiquidityCtrlCheck(payment: Payment)
+
   case class CommandAccountPostingsCheck(payment: Payment)
+
   case class CommandProcessingComplete(payment: Payment)
 
   case class Payment(paymentID: String, tenantID: String, txnDate: Date,
@@ -75,8 +81,8 @@ object PaymentProcBSONApp extends App {
   val paymentSystem = ActorSystem("payment-pipeline-system")
   val paymentProcessorActor = paymentSystem.actorOf(Props[PaymentProcessor], "paymentProcessorBson")
 
-//  for (i <- 1 to 10) {
-//    paymentProcessorActor ! Payment("PAY-" + i, "DEMO-TENANT", new Date, STAGE_NEW)
-//  }
+  for (i <- 1 to 10) {
+    paymentProcessorActor ! Payment("PAY-" + i, "DEMO-TENANT", new Date, STAGE_NEW)
+  }
 
 }
