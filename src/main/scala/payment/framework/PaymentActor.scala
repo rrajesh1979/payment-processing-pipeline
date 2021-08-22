@@ -26,7 +26,7 @@ class PaymentActor(paymentID: String, tenantID: String, txnDate: Timestamp,
       log.info("Received command :: {}", Command(stage))
       val eventProto = EventProto.newBuilder().setStage(stage).build()
       persist(eventProto) {
-          _ => log.info("Persisting command {}", stage)
+        _ => log.info("Persisting command {}", stage)
           payment.currentStage = stage
           payment.processingPipeline = payment.processingPipeline + (stage -> true)
       }

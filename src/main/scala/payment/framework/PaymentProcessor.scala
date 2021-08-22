@@ -9,7 +9,7 @@ object PaymentProcessor extends App {
   val paymentActorSystem = ActorSystem("PaymentActorSystem", ConfigFactory.load().getConfig("paymentPersistence"))
   val payment = paymentActorSystem.actorOf(
     PaymentActor.props(
-      "003",
+      "005",
       "DEMO-TENANT",
       Timestamp.newBuilder().setSeconds(System.nanoTime()).build(),
       PaymentDomainModel.STAGE_NEW)
