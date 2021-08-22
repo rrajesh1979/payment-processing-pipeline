@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+option java_package = "payment.framework.serializers";
+
+import "google/protobuf/timestamp.proto";
+
+message PaymentProto {
+  required string paymentID = 1;
+  required string tenantID = 2;
+  required google.protobuf.Timestamp txnDate = 3;
+  required string currentStage = 4;
+
+  message Stage {
+    required string stage = 1;
+    required bool status = 2;
+  }
+
+  message PipelineStages {
+    repeated Stage pipelineStage = 1;
+  }
+
+  optional PipelineStages processingPipeline = 5;
+}
