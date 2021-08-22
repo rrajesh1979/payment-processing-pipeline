@@ -6,10 +6,10 @@ import com.typesafe.config.ConfigFactory
 import payment.framework.PaymentDomainModel._
 
 object PaymentProcessor extends App {
-  val paymentActorSystem = ActorSystem("PaymentActorSystem", ConfigFactory.load().getConfig("paymentPersistence"))
+  val paymentActorSystem = ActorSystem("PaymentActorSystem", ConfigFactory.load().getConfig("paymentPersistenceMongoDB"))
   val payment = paymentActorSystem.actorOf(
     PaymentActor.props(
-      "005",
+      "0011",
       "DEMO-TENANT",
       Timestamp.newBuilder().setSeconds(System.nanoTime()).build(),
       PaymentDomainModel.STAGE_NEW)
