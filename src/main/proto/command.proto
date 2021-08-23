@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+option java_package = "payment.framework.serializers";
+
+message CommandProto {
+  required string currentStage = 1;
+  message Stage {
+    required string stage = 1;
+    required bool status = 2;
+  }
+
+  message PipelineStages {
+    repeated Stage pipelineStage = 1;
+  }
+
+  optional PipelineStages processingPipeline = 2;
+}

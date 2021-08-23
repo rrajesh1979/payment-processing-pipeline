@@ -5,6 +5,10 @@ version := "0.1"
 scalaVersion := "2.13.6"
 val akkaVersion = "2.6.16"
 val akkaCassandraVersion = "1.0.5"
+val scalaTestVersion = "3.1.4"
+val akkaHttpVersion = "10.2.6"
+val alpakkaVersion = "3.0.3"
+val alpakkaKafkaVersion = "2.1.1"
 
 resolvers += Resolver.bintrayRepo("akka", "snapshots")
 
@@ -37,5 +41,14 @@ libraryDependencies ++= Seq(
   "com.google.protobuf" % "protobuf-java" % "3.17.3",
 
   "com.sksamuel.avro4s" %% "avro4s-core" % "3.0.0",
+
+  "com.lightbend.akka" %% "akka-stream-alpakka-csv" % alpakkaVersion,
+  "com.typesafe.akka" %% "akka-stream-kafka" % alpakkaKafkaVersion,
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+  // Used from Scala
+  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
+  "org.testcontainers" % "kafka" % "1.16.0",
+
 
 )

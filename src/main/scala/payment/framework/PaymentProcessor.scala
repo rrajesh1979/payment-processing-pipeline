@@ -7,13 +7,15 @@ import payment.framework.PaymentDomainModel._
 
 object PaymentProcessor extends App {
   val paymentActorSystem = ActorSystem("PaymentActorSystem", ConfigFactory.load().getConfig("paymentPersistenceMongoDB"))
+
   val payment = paymentActorSystem.actorOf(
-    PaymentActor.props(
-      "0011",
+    PaymentActorImmutable.props(
+      "0015",
       "DEMO-TENANT",
       Timestamp.newBuilder().setSeconds(System.nanoTime()).build(),
       PaymentDomainModel.STAGE_NEW)
   )
+
 //  payment ! Command(STAGE_SANCTION_CHK)
 //  payment ! Command(STAGE_AML_CHK)
 //  payment ! Command(STAGE_FRAUD_CHK)
