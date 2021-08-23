@@ -4,7 +4,6 @@ import akka.actor.{ActorLogging, Props}
 import akka.persistence._
 import com.google.protobuf.Timestamp
 import payment.framework.serializers.Command.CommandProto
-import payment.framework.serializers.Event.EventProto
 import payment.framework.serializers.Payment.PaymentProto
 
 object PaymentActorImmutable {
@@ -42,7 +41,6 @@ class PaymentActorImmutable(paymentID: String, tenantID: String, txnDate: Timest
       )
       pipelineStages.build()
 
-      val eventProto = EventProto.newBuilder().setStage(stage).build()
       val commandProto = CommandProto.newBuilder()
         .setCurrentStage(stage)
         .setProcessingPipeline(pipelineStages)
