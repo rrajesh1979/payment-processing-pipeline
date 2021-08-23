@@ -42,13 +42,4 @@ libraryDependencies ++= Seq(
 
   "com.sksamuel.avro4s" %% "avro4s-core" % "3.0.0",
 
-  "com.lightbend.akka" %% "akka-stream-alpakka-csv" % alpakkaVersion,
-  "com.typesafe.akka" %% "akka-stream-kafka" % alpakkaKafkaVersion,
-  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
-  // Used from Scala
-  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
-  "org.testcontainers" % "kafka" % "1.16.0",
-
-
 )
