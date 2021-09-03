@@ -8,9 +8,16 @@ val akkaCassandraVersion = "1.0.5"
 val scalaTestVersion = "3.1.4"
 val akkaHttpVersion = "10.2.6"
 val alpakkaVersion = "3.0.3"
-val alpakkaKafkaVersion = "2.1.1"
+
+val kafkaVersion = "2.8.0"
+
+val circeVersion = "0.14.1"
 
 resolvers += Resolver.bintrayRepo("akka", "snapshots")
+resolvers ++= Seq (
+  Opts.resolver.mavenLocalFile,
+  "Confluent" at "https://packages.confluent.io/maven"
+)
 
 libraryDependencies ++= Seq(
   // https://mvnrepository.com/artifact/com.typesafe.akka/akka-persistence
@@ -41,5 +48,24 @@ libraryDependencies ++= Seq(
   "com.google.protobuf" % "protobuf-java" % "3.17.3",
 
   "com.sksamuel.avro4s" %% "avro4s-core" % "3.0.0",
+
+  "com.typesafe" % "config" % "1.4.1",
+
+  "org.apache.kafka" % "kafka-clients" % kafkaVersion,
+  "org.apache.kafka" % "connect-json" % kafkaVersion,
+  "org.apache.kafka" % "connect-runtime" % kafkaVersion,
+  "org.apache.kafka" % "kafka-streams" % kafkaVersion,
+  "org.apache.kafka" %% "kafka-streams-scala" % kafkaVersion,
+  "org.apache.kafka" % "connect-runtime" % kafkaVersion,
+
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.12.4",
+  "io.confluent" % "kafka-json-serializer" % "5.0.1",
+  "javax.ws.rs" % "javax.ws.rs-api" % "2.1.1" artifacts Artifact("javax.ws.rs-api", "jar", "jar"),
+
+  "io.spray" %%  "spray-json" % "1.3.6",
+
+  "io.circe"  %% "circe-core"     % circeVersion,
+  "io.circe"  %% "circe-generic"  % circeVersion,
+  "io.circe"  %% "circe-parser"   % circeVersion
 
 )
