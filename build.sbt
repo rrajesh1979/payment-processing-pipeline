@@ -66,6 +66,17 @@ libraryDependencies ++= Seq(
 
   "io.circe"  %% "circe-core"     % circeVersion,
   "io.circe"  %% "circe-generic"  % circeVersion,
-  "io.circe"  %% "circe-parser"   % circeVersion
+  "io.circe"  %% "circe-parser"   % circeVersion,
+
+  // akka streams
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+  // akka http
+  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion,
+  // JWT
+  "com.pauldijou" %% "jwt-spray-json" % "5.0.0",
+
+  "com.typesafe.akka" %% "akka-slf4j"  % akkaVersion
 
 )

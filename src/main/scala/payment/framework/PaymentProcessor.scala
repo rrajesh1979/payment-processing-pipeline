@@ -18,12 +18,13 @@ import payment.framework.incoming.PaymentRecord
 import scala.collection.mutable
 
 object PaymentProcessor extends App {
+  val PARALLELISM = 100
 
   val paymentActorSystem = ActorSystem("PaymentActorSystem", ConfigFactory.load().getConfig("paymentPersistenceMongoDB"))
 
   val payment = paymentActorSystem.actorOf(
     PaymentActorImmutable.props(
-      "0015",
+      "0855",
       "DEMO-TENANT",
       Timestamp.newBuilder().setSeconds(System.nanoTime()).build(),
       PaymentDomainModel.STAGE_NEW)
@@ -34,7 +35,7 @@ object PaymentProcessor extends App {
 //  payment ! Command(STAGE_FRAUD_CHK)
 //  payment ! Command(STAGE_FUNDS_CONTROL_CHK)
 
-  payment ! "print"
+//  payment ! "print"
 
 //  payment ! "snapshot"
 
@@ -83,8 +84,16 @@ object PaymentProcessor extends App {
                 paymentRecord.tenantId,
                 Timestamp.newBuilder().setSeconds(paymentRecord.txnDate).build(),
                 PaymentDomainModel.STAGE_NEW)
+
               val paymentActor = paymentActorSystem.actorOf(paymentProps)
+
               paymentActor ! Command(STAGE_SANCTION_CHK)
+              paymentActor ! Command(STAGE_AML_CHK)
+              paymentActor ! Command(STAGE_FRAUD_CHK)
+              paymentActor ! Command(STAGE_FUNDS_CONTROL_CHK)
+              paymentActor ! Command(STAGE_LIQUIDITY_CONTROL_CHK)
+              paymentActor ! Command(STAGE_ACCOUNT_POSTINGS_CHK)
+
               paymentActorProps.enqueue(paymentProps)
             case Left(error) => println(error.getMessage)
           }
